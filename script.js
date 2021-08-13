@@ -1,8 +1,8 @@
 const pColor = document.querySelector('#rgb-color');
 const balls = document.querySelectorAll('.ball');
-const rightAnswer = parseInt(Math.random() * 6, 10);
 const ballsContainer = document.getElementById('balls-container');
 const reset = document.querySelector('#reset-game');
+const score = document.querySelector('#score');
 
 function generateRGB() {
   let rgb = 'rgb(';
@@ -19,6 +19,7 @@ function generateRGB() {
 }
 
 function start() {
+  const rightAnswer = parseInt(Math.random() * 6, 10);
   for (let i = 0; i < balls.length; i += 1) {
     if (rightAnswer === i) {
       const rgbValue = generateRGB();
@@ -35,14 +36,14 @@ function start() {
 
 start();
 
-const rightBall = document.querySelector('#answer');
-
 function checkAnswer(e) {
+  const rightBall = document.querySelector('#answer');
   const event = e;
   const rightBallStyle = getComputedStyle(rightBall);
   const style = getComputedStyle(event.target);
   if (style.backgroundColor === rightBallStyle.backgroundColor) {
     rightBall.innerText = 'Acertou!';
+    score.innerText = parseInt(score.innerText, 10) + 3;
   } else {
     rightBall.innerText = 'Errou! Tente novamente!';
   }
@@ -50,4 +51,10 @@ function checkAnswer(e) {
 
 ballsContainer.addEventListener('click', checkAnswer);
 
-reset.addEventListener('click', start);
+function resetGame() {
+  const answer = document.getElementById('answer');
+  answer.id = '';
+  start();
+}
+
+reset.addEventListener('click', resetGame);

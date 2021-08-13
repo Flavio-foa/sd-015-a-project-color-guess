@@ -6,3 +6,11 @@
   display: inline-block;
   text-align: center;
 }
+
+label {
+  display: inline-block;
+}
+
+#score {
+  display: inline-block;
+}
