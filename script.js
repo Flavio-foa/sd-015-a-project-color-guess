@@ -75,6 +75,17 @@ function validateGuess() {
   });
 }
 
+function createStartBtn() {
+  const startBtn = document.createElement('button');
+  startBtn.innerHTML = 'Iniciar/Resetar';
+  document.querySelector('main').appendChild(startBtn);
+
+  startBtn.addEventListener('click', () => {
+    location.reload();
+  });
+}
+
 createOptionColors();
 createParagraphText();
 validateGuess();
+createStartBtn();
