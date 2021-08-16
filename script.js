@@ -1,5 +1,4 @@
 let ISRGBHASH = false;
-const rgbHash = createRGBParagraph();
 
 function generateRandomColor() {
   const rgbColor = [];
@@ -23,6 +22,8 @@ function createRGBParagraph() {
   document.querySelector('main').appendChild(paragraph);
   return nums;
 }
+
+const rgbHash = createRGBParagraph();
 
 function validateOptions() {
   if (!ISRGBHASH) {
@@ -51,4 +52,29 @@ function createOptionColors() {
   validateOptions();
 }
 
+function createParagraphText() {
+  const newParagraph = document.createElement('p');
+
+  newParagraph.innerHTML = 'Escolha uma cor';
+  newParagraph.id = 'answer';
+
+  document.querySelector('main').appendChild(newParagraph);
+}
+
+function validateGuess() {
+  const optionsList = document.querySelector('ul');
+
+  optionsList.addEventListener('click', (event) => {
+    const guessBackground = event.target.style.backgroundColor;
+
+    if (guessBackground === `rgb(${rgbHash[0]}, ${rgbHash[1]}, ${rgbHash[2]})`) {
+      document.getElementById('answer').innerHTML = 'Acertou!';
+    } else {
+      document.getElementById('answer').innerHTML = 'Errou! Tente novamente!';
+    }
+  });
+}
+
 createOptionColors();
+createParagraphText();
+validateGuess();
