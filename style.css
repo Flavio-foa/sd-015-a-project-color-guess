@@ -1,0 +1,12 @@
+#cores {
+  border: 1px solid;
+  height: 70px;
+}
+
+.ball {
+  border: 1px solid;
+  border-radius: 100%;
+  height: 70px;
+  width: 70px;
+  display: inline-block;
+}
