@@ -38,12 +38,15 @@ function createOptionColors() {
 
   document.querySelector('main').appendChild(listOption);
   for (let i = 0; i < 6; i += 1) {
+    const itemOptionContainer = document.createElement('div');
     const itemOption = document.createElement('li');
     const rgbNum = generateRandomColor();
+
     if (rgbNum === rgbHash) ISRGBHASH = true;
-    itemOption.className = 'ball';
-    itemOption.style.backgroundColor = `rgb(${rgbNum})`;
-    listOption.appendChild(itemOption);
+    itemOptionContainer.className = 'ball';
+    itemOptionContainer.style.backgroundColor = `rgb(${rgbNum})`;
+    listOption.appendChild(itemOptionContainer);
+    itemOptionContainer.appendChild(itemOption);
   }
   validateOptions();
 }
