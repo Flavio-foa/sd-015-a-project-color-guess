@@ -4,6 +4,9 @@ const numberOfOptions = 6;
 let rightAnswerIndex = Math.floor(Math.random() * 5);
 const answer = document.getElementById('answer');
 const resetBttn = document.getElementById('reset-game');
+const score = document.getElementById('score');
+let scoreNumber = 0;
+score.innerHTML = scoreNumber;
 
 function randomRGBGenerator() {
   const r = Math.floor(Math.random() * 255);
@@ -29,8 +32,11 @@ function checkAnswer() {
   colorContainer.addEventListener('click', (event) => {
     if (event.target.style.backgroundColor === guessColor.innerHTML) {
       answer.innerHTML = 'Acertou!';
+      scoreNumber += 3;
+      score.innerHTML = scoreNumber;
     } else {
       answer.innerHTML = 'Errou! Tente novamente';
+      score.innerHTML = scoreNumber;
     }
   });
 }
