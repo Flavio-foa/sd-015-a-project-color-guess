@@ -8,11 +8,14 @@
     <title>Guarize - Color Guess</title>
   </head>
   <body>
-    <header>
+    <header id="header-container">
       <h1 id="title">Color Guessing Game</h1>
       <h3 id="rgb-color"></h3>
     </header>
     <main>
+      <section id="score-container">
+        <h3 id="score">Score:</h3>
+      </section>
       <section id="colors-container">
         <div class="ball"></div>
         <div class="ball"></div>
@@ -21,7 +24,7 @@
         <div class="ball"></div>
         <div class="ball"></div>
       </section>
-      <section>
+      <section id="button-container">
         <button id="reset-game" name="reset-game-button">New Game</button>
       </section>
     </main>
