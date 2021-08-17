@@ -60,3 +60,13 @@ function clickBalls() {
 }
 
 clickBalls();
+
+function resetGame() {
+  text.innerHTML = generateNumber(0, 256);
+  answer.innerHTML = 'Escolha uma cor';
+}
+
+const resetButton = document.getElementById('reset-game');
+
+resetButton.addEventListener('click', resetGame);
+resetButton.addEventListener('click', generateBallsColor);
