@@ -21,12 +21,22 @@ function randomText() {
   p.innerHTML = colorText;
 }
 
+function scoreCounter() {
+  const score = document.getElementById('score-number');
+  const scoreText = score.innerHTML;
+  let scoreNum = parseInt(scoreText, 10);
+  scoreNum += 3;
+  console.log(scoreNum);
+  score.innerHTML = scoreNum;
+}
+
 function verifyAnswer(event) {
   const showAnswer = document.getElementById('answer');
   const question = document.getElementById('rgb-color').innerHTML;
   const colorClicked = event.target.style.backgroundColor;
   if (colorClicked === question) {
     showAnswer.innerHTML = 'Acertou!';
+    scoreCounter();
   } else {
     showAnswer.innerHTML = 'Errou! Tente novamente';
   }
