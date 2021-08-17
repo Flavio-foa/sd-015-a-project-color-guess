@@ -25,15 +25,15 @@ createColorBall();
 const balls = document.getElementsByClassName('ball');
 const correctBall = Math.floor(Math.random() * 6);
 // definida a posição da bola da resposta correta
-console.log(correctBall);
+// console.log(correctBall);
 function generateBallsColor() {
   for (let index = 0; index < balls.length; index += 1) {
     if (index === correctBall) {
       balls[index].style.backgroundColor = `rgb${text.innerHTML}`;
-      console.log(`rgb${text.innerHTML}`);
+      // console.log(`rgb${text.innerHTML}`);
     } else {
       balls[index].style.backgroundColor = `rgb${generateNumber(0, 256)}`;
-      console.log(`rgb${generateNumber(0, 256)}`);
+      // console.log(`rgb${generateNumber(0, 256)}`);
     }
   }
 }
