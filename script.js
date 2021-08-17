@@ -15,3 +15,25 @@ function generateRGBColor() {
 }
 
 guessText.innerText = generateRGBColor();
+
+/* Gera os círculos de cores possíveis */
+
+const ballGuessContainer = document.getElementById('ball-guess-container');
+
+function createGuessBalls() {
+  const rightBallPosition = Math.floor(Math.random() * 5);
+
+  for (let idx = 0; idx < 6; idx += 1) {
+    const ball = document.createElement('div');
+    ball.className = 'ball';
+
+    if (idx === rightBallPosition) {
+      ball.style.backgroundColor = guessText.innerText;
+    } else {
+      ball.style.backgroundColor = generateRGBColor();
+    }
+    ballGuessContainer.appendChild(ball);
+  }
+}
+
+createGuessBalls();

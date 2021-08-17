@@ -1,0 +1,12 @@
+#ball-guess-container {
+  max-width: 330px;
+}
+
+.ball {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  border-radius: 100%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
