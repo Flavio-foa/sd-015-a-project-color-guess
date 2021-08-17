@@ -28,3 +28,12 @@ function createColorBall() {
 }
 
 createColorBall();
+
+function generateBallsColor() {
+  const balls = document.getElementsByClassName('ball');
+  for (let index = 0; index < balls.length; index += 1) {
+    balls[index].style.backgroundColor = `rgb${generateNumber(0, 256)}`;
+  }
+}
+
+generateBallsColor();
