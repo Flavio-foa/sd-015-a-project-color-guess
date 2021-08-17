@@ -1,5 +1,9 @@
 const rgbTarget = document.getElementById('rgb-color');
+const colorsBalls = document.querySelectorAll('.ball');
+const colorsContainer = document.getElementById('colors-container');
+const answer = document.getElementById('answer');
 
+// Generates random RGB color
 function generateRandomRGB() {
   const r = Math.floor(Math.random() * 255);
   const g = Math.floor(Math.random() * 255);
@@ -8,6 +12,39 @@ function generateRandomRGB() {
   return `rgb(${r},${g},${b})`;
 }
 
-window.onload = function() {
-  rgbTarget.innerHTML = generateRandomRGB();
+// Generates random color array
+function randomColorArray() {
+  const arr = [];
+  for (let i = 0; i < 6; i += 1) {
+    arr.push(generateRandomRGB());
+  }
+  return arr;
 }
+
+const arrColors = randomColorArray();
+
+// Picks random 'selected' color and sets colors
+
+window.onload = function setsColors() {
+  for (let i = 0; i < colorsBalls.length; i += 1) {
+    colorsBalls[i].style.backgroundColor = arrColors[i];
+  }
+  const randomIndex = Math.floor(Math.random() * 6);
+  rgbTarget.innerText = colorsBalls[randomIndex].style.backgroundColor;
+  return colorsBalls[randomIndex];
+};
+
+// Checks if clicked color is correct
+function game(event) {
+  const clickedColor = event.target;
+  if (
+    clickedColor.style.backgroundColor === rgbTarget.innerText.toLowerCase()
+  ) {
+    answer.innerText = 'Acertou!';
+    return true;
+  }
+  answer.innerText = 'Errou! Tente novamente!';
+  return false;
+}
+
+colorsContainer.addEventListener('click', game);
