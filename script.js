@@ -41,12 +41,15 @@ function generateBallsColor() {
 generateBallsColor();
 
 const answer = document.getElementById('answer');
+const score = document.getElementById('score');
 
 function getAnswer(event) {
   const guessColor = `rgb${document.getElementById('rgb-color').innerHTML}`;
   const guessShot = event.target.style.backgroundColor;
   if (guessShot === guessColor) {
     answer.innerHTML = 'Acertou!';
+    // ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number
+    score.innerHTML = Number(score.innerHTML) + 3;
   } else {
     answer.innerHTML = 'Errou! Tente novamente!';
   }
@@ -61,12 +64,12 @@ function clickBalls() {
 
 clickBalls();
 
-function resetGame() {
+function generateNewColors() {
   text.innerHTML = generateNumber(0, 256);
   answer.innerHTML = 'Escolha uma cor';
+  generateBallsColor();
 }
 
 const resetButton = document.getElementById('reset-game');
 
-resetButton.addEventListener('click', resetGame);
-resetButton.addEventListener('click', generateBallsColor);
+resetButton.addEventListener('click', generateNewColors);
