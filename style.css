@@ -5,3 +5,8 @@
   border-radius: 50%;
   display: inline-block;
 }
+
+#reset-game {
+  display: block;
+  margin-top: 20px;
+}
