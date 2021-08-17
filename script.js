@@ -1,5 +1,5 @@
 const paragraph = document.getElementById('rgb-color');
-paragraph.innerHTML = '(168, 34, 1)';
+let message = document.getElementById('answer');
 
 function generateRGBColor() {
   const r = Math.floor(Math.random() * 255);
@@ -9,11 +9,27 @@ function generateRGBColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-document.querySelector('.ball').style.backgroundColor = 'black'
+function showMessage(event) {
+  const color = event.target;
+  if (color.id === 'correct') {
+    message.innerText = 'Acertou!'
+  } else {
+    message.innerText = 'Errou! Tente novamente!';
+  }
+}
 
-window.onload = function generateColors() {
-  const balls = document.querySelectorAll('.ball');
-  balls.forEach(element => {
-    element.style.backgroundColor = generateRGBColor();
+const balls = document.querySelectorAll('.ball');
+
+window.onload = function init() {
+  balls.forEach((element) => {
+    const array = element;
+    array.style.backgroundColor = generateRGBColor();
+    array.addEventListener('click', showMessage);
   });
+  
+  let correctBall = balls[Math.floor(Math.random() * 6)];
+  correctBall.id = 'correct';
+  let correctColor = correctBall.style.backgroundColor;
+  let arrayRGB = correctColor.match(/\d+/g);
+  paragraph.innerText = `(${arrayRGB[0]}, ${arrayRGB[1]}, ${arrayRGB[2]})`;
 };
