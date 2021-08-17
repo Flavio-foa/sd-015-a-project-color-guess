@@ -1,7 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Roboto&display=swap') ;
+
+body {
+  text-align: center;
+  font-family: Roboto, sans-serif;
+  background-color: antiquewhite;
+}
+
+h1 {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  font-size: 52px;
+  font-family: Patrick Hand, cursive;
+}
+
+.color-text {
+  font-family: monospace;
+  font-size: large;
+  margin-bottom: 40px;
+}
+
+.section-score {
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-family: Patrick Hand, cursive;
+}
+
+.answer-section {
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-family: Patrick Hand, cursive;
+}
+
+.color-balls {
+  margin-bottom: 40px;
+}
+
 .ball {
   display: inline-block;
   border: 1px solid black;
   height: 50px;
   width: 50px;
   border-radius: 30px;
+}
+
+button {
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+  background-color: darkcyan;
+}
+
+button:hover {
+  font-weight: 600;
 }

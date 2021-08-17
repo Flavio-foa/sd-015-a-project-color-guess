@@ -26,7 +26,6 @@ function scoreCounter() {
   const scoreText = score.innerHTML;
   let scoreNum = parseInt(scoreText, 10);
   scoreNum += 3;
-  console.log(scoreNum);
   score.innerHTML = scoreNum;
 }
 
