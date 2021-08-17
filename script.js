@@ -17,3 +17,14 @@ function generateColor() {
 }
 
 generateColor();
+
+function createColorBall() {
+  for (let index = 1; index <= 6; index += 1) {
+    const board = document.getElementById('balls-board');
+    const balls = document.createElement('div');
+    balls.className = 'ball';
+    board.appendChild(balls);
+  }
+}
+
+createColorBall();
