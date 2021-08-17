@@ -1,4 +1,4 @@
-/* Gera cor a ser adivinhada */
+/* Função para gerar as cores */
 
 const guessText = document.getElementById('rgb-color');
 
@@ -14,9 +14,7 @@ function generateRGBColor() {
   return rgbColor;
 }
 
-guessText.innerText = generateRGBColor();
-
-/* Gera os círculos de cores possíveis */
+/* Função para gerar os círculos com as cores */
 
 const guessBallsContainer = document.getElementById('ball-guess-container');
 
@@ -36,11 +34,14 @@ function createGuessBalls() {
   }
 }
 
-createGuessBalls();
+/* Ativa o sistema de pontuação */
+
+const scoreCounter = document.getElementById('score');
+scoreCounter.innerText = 0;
 
 /* Verifica se a resposta ao clicar no círculo está correta  */
 
-const guessBalls = document.querySelectorAll('.ball');
+let guessBalls = document.querySelectorAll('.ball');
 const answerText = document.getElementById('answer');
 
 function checkGuess(evt) {
@@ -48,6 +49,7 @@ function checkGuess(evt) {
 
   if (selectedBall.style.backgroundColor === guessText.innerText) {
     answerText.innerText = 'Acertou!';
+    scoreCounter.innerText = Number(scoreCounter.innerText) + 3;
   } else {
     answerText.innerText = 'Errou! Tente novamente!';
   }
@@ -59,6 +61,42 @@ function checkGuess(evt) {
   });
 }
 
-guessBalls.forEach((ball) => {
-  ball.addEventListener('click', checkGuess);
-});
+/* Adiciona função para iniciar o jogo */
+
+function startGame() {
+  guessText.innerText = generateRGBColor();
+  createGuessBalls();
+
+  guessBalls = document.querySelectorAll('.ball');
+  guessBalls.forEach((ball) => {
+    ball.addEventListener('click', checkGuess);
+  });
+}
+
+startGame();
+
+/* Adiciona botão para reiniciar o jogo */
+
+function resetGame() {
+  // Exclui as bolas que estão em tela
+  const initialBallsContainerLength = guessBallsContainer.childNodes.length;
+
+  for (let idx = 0; idx < initialBallsContainerLength; idx += 1) {
+    guessBallsContainer.removeChild(guessBallsContainer.firstChild);
+  }
+
+  // Reseta o valor da resposta
+  answerText.innerText = 'Escolha uma cor';
+
+  // Inicia novamente o jogo
+  startGame();
+}
+
+function createResetButton() {
+  const button = document.createElement('button');
+  button.id = 'reset-game';
+  button.addEventListener('click', resetGame);
+  button.innerText = 'Reiniciar o Jogo';
+  document.body.appendChild(button);
+}
+createResetButton();
