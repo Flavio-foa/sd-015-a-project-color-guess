@@ -39,6 +39,19 @@ function addBallsListeners() {
   }
 }
 
+function resetGame() {
+  colorizeBalls();
+  randomText();
+  const p = document.getElementById('answer');
+  p.innerHTML = 'Escolha uma cor';
+}
+
+function addButtonListener() {
+  const button = document.getElementById('reset-game');
+  button.addEventListener('click', resetGame);
+}
+
 addBallsListeners();
+addButtonListener();
 colorizeBalls();
 randomText();
