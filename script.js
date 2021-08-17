@@ -14,4 +14,31 @@ function colorizeBalls() {
   }
 }
 
+function randomText() {
+  const randomNum = Math.floor(Math.random() * 5);
+  const colorText = window.getComputedStyle(balls[randomNum]).backgroundColor;
+  const p = document.getElementById('rgb-color');
+  p.innerHTML = colorText;
+}
+
+function verifyAnswer(event) {
+  const showAnswer = document.getElementById('answer');
+  const question = document.getElementById('rgb-color').innerHTML;
+  const colorClicked = event.target.style.backgroundColor;
+  if (colorClicked === question) {
+    showAnswer.innerHTML = 'Acertou!';
+  } else {
+    showAnswer.innerHTML = 'Errou! Tente novamente';
+  }
+}
+
+function addBallsListeners() {
+  for (let i = 0; i < balls.length; i += 1) {
+    const ball = balls[i];
+    ball.addEventListener('click', verifyAnswer);
+  }
+}
+
+addBallsListeners();
 colorizeBalls();
+randomText();
