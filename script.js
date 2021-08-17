@@ -9,7 +9,7 @@ function generateNumber(min, max) {
 }
 
 const text = document.getElementById('rgb-color');
-text.innerText = generateNumber(0, 256);
+text.innerHTML = generateNumber(0, 256);
 
 const board = document.getElementById('balls-board');
 function createColorBall() {
@@ -22,11 +22,11 @@ function createColorBall() {
 
 createColorBall();
 
+const balls = document.getElementsByClassName('ball');
+const correctBall = Math.floor(Math.random() * 6);
+// definida a posição da bola da resposta correta
+console.log(correctBall);
 function generateBallsColor() {
-  const balls = document.getElementsByClassName('ball');
-  const correctBall = Math.floor(Math.random() * 5);
-  console.log(correctBall);
-  // definida a posição da bola da resposta correta
   for (let index = 0; index < balls.length; index += 1) {
     if (index === correctBall) {
       balls[index].style.backgroundColor = `rgb${text.innerHTML}`;
@@ -40,6 +40,23 @@ function generateBallsColor() {
 
 generateBallsColor();
 
-/* const newGameButton = document.getElementById('reset-game');
-newGameButton.addEventListener('click', generateBallsColor);
- */
+const answer = document.getElementById('answer');
+
+function getAnswer(event) {
+  const guessColor = `rgb${document.getElementById('rgb-color').innerHTML}`;
+  const guessShot = event.target.style.backgroundColor;
+  if (guessShot === guessColor) {
+    answer.innerHTML = 'Acertou!';
+  } else {
+    answer.innerHTML = 'Errou! Tente novamente!';
+  }
+}
+
+function clickBalls() {
+  for (let index = 0; index < balls.length; index += 1) {
+    const clickBall = balls[index];
+    clickBall.addEventListener('click', getAnswer);
+  }
+}
+
+clickBalls();
