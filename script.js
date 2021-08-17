@@ -2,6 +2,7 @@ const guessColor = document.getElementById('rgb-color');
 const colorContainer = document.getElementById('colors-container');
 const numberOfOptions = 6;
 const rightAnswerIndex = Math.floor(Math.random() * 5);
+const answer = document.getElementById('answer');
 
 function randomRGBGenerator() {
   const r = Math.floor(Math.random() * 255);
@@ -23,6 +24,17 @@ function addColors() {
   }
 }
 
+function checkAnswer() {
+  colorContainer.addEventListener('click', (event) => {
+    if (event.target.style.backgroundColor === guessColor.innerHTML) {
+      answer.innerHTML = 'Acertou!';
+    } else {
+      answer.innerHTML = 'Errou! Tente novamente';
+    }
+  });
+}
+
 randomRGBGenerator();
 guessColor.innerHTML = randomRGBGenerator();
 addColors();
+checkAnswer();
