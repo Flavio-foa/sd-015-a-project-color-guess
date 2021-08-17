@@ -8,19 +8,12 @@ function generateNumber(min, max) {
   return `(${r}, ${g}, ${b})`;
 }
 
-function generateColor() {
-  const text = document.getElementById('rgb-color');
-  const colorToGuess = document.createElement('p');
-  colorToGuess.className = 'color';
-  colorToGuess.innerHTML = generateNumber(0, 256);
-  text.appendChild(colorToGuess);
-}
+const text = document.getElementById('rgb-color');
+text.innerText = generateNumber(0, 256);
 
-generateColor();
-
+const board = document.getElementById('balls-board');
 function createColorBall() {
   for (let index = 1; index <= 6; index += 1) {
-    const board = document.getElementById('balls-board');
     const balls = document.createElement('div');
     balls.className = 'ball';
     board.appendChild(balls);
@@ -31,9 +24,22 @@ createColorBall();
 
 function generateBallsColor() {
   const balls = document.getElementsByClassName('ball');
+  const correctBall = Math.floor(Math.random() * 5);
+  console.log(correctBall);
+  // definida a posição da bola da resposta correta
   for (let index = 0; index < balls.length; index += 1) {
-    balls[index].style.backgroundColor = `rgb${generateNumber(0, 256)}`;
+    if (index === correctBall) {
+      balls[index].style.backgroundColor = `rgb${text.innerHTML}`;
+      console.log(`rgb${text.innerHTML}`);
+    } else {
+      balls[index].style.backgroundColor = `rgb${generateNumber(0, 256)}`;
+      console.log(`rgb${generateNumber(0, 256)}`);
+    }
   }
 }
 
 generateBallsColor();
+
+/* const newGameButton = document.getElementById('reset-game');
+newGameButton.addEventListener('click', generateBallsColor);
+ */
