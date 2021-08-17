@@ -1,0 +1,28 @@
+#title {
+  font-size: 50px;
+  font-family: Cambria, sans-serif;
+  padding: 50px;
+  background-color: rgb(211, 98, 6);
+  color: rgb(88, 46, 46);
+
+}
+
+#rgb-color {
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+body {
+  text-align: center;
+
+}
+
+#answer {
+  font-size: 50px;
+  padding: 20px;
+  background-color: rgb(160, 102, 214);
+  color: white;
+  display: inline-block;
+  border-radius: 25%;
+}
