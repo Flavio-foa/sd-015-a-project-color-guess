@@ -2,6 +2,7 @@ const rgbTarget = document.getElementById('rgb-color');
 const colorsBalls = document.querySelectorAll('.ball');
 const colorsContainer = document.getElementById('colors-container');
 const answer = document.getElementById('answer');
+const resetGameBtn = document.getElementById('reset-game');
 
 // Generates random RGB color
 function generateRandomRGB() {
@@ -24,7 +25,6 @@ function randomColorArray() {
 const arrColors = randomColorArray();
 
 // Picks random 'selected' color and sets colors
-
 window.onload = function setsColors() {
   for (let i = 0; i < colorsBalls.length; i += 1) {
     colorsBalls[i].style.backgroundColor = arrColors[i];
@@ -48,3 +48,18 @@ function game(event) {
 }
 
 colorsContainer.addEventListener('click', game);
+
+// Reset game
+function reset() {
+  const newColors = randomColorArray();
+
+  for (let i = 0; i < colorsBalls.length; i += 1) {
+    colorsBalls[i].style.backgroundColor = newColors[i];
+  }
+
+  const newIndex = Math.floor(Math.random() * 6);
+  rgbTarget.innerText = colorsBalls[newIndex].style.backgroundColor;
+  answer.innerHTML = 'Escolha uma cor';
+}
+
+resetGameBtn.addEventListener('click', reset);
