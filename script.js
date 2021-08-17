@@ -18,7 +18,7 @@ guessText.innerText = generateRGBColor();
 
 /* Gera os círculos de cores possíveis */
 
-const ballGuessContainer = document.getElementById('ball-guess-container');
+const guessBallsContainer = document.getElementById('ball-guess-container');
 
 function createGuessBalls() {
   const rightBallPosition = Math.floor(Math.random() * 5);
@@ -32,8 +32,33 @@ function createGuessBalls() {
     } else {
       ball.style.backgroundColor = generateRGBColor();
     }
-    ballGuessContainer.appendChild(ball);
+    guessBallsContainer.appendChild(ball);
   }
 }
 
 createGuessBalls();
+
+/* Verifica se a resposta ao clicar no círculo está correta  */
+
+const guessBalls = document.querySelectorAll('.ball');
+const answerText = document.getElementById('answer');
+
+function checkGuess(evt) {
+  const selectedBall = evt.target;
+
+  if (selectedBall.style.backgroundColor === guessText.innerText) {
+    answerText.innerText = 'Acertou!';
+  } else {
+    answerText.innerText = 'Errou! Tente novamente!';
+  }
+
+  guessBalls.forEach((ball) => {
+    const ballText = document.createElement('span');
+    ballText.innerText = ball.style.backgroundColor;
+    ball.appendChild(ballText);
+  });
+}
+
+guessBalls.forEach((ball) => {
+  ball.addEventListener('click', checkGuess);
+});
