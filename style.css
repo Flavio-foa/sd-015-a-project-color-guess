@@ -10,3 +10,7 @@
   display: block;
   margin-top: 20px;
 }
+
+#score {
+  display: inline-block;
+}
