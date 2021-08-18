@@ -3,7 +3,7 @@ const corEscolhida = document.getElementById('rgb-color');
 const respostaPagina = document.getElementById('answer');
 const botaoReset = document.getElementById('reset-game');
 const pontos = document.getElementById('score');
-const regexCor = /(\(\d{1,3}, \d{1,3}, \d{1,3}\))/g;
+const regexCor = /\(\d{1,3}, \d{1,3}, \d{1,3}\)/g;
 const indexZero = 0;
 
 function randomNumberRGB() {
