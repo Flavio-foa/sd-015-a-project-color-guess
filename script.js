@@ -1,5 +1,7 @@
 const balls = document.querySelectorAll('.ball');
 const answer = document.getElementById('answer');
+const scoreDiv = document.getElementById('score');
+let score = 0;
 
 function generateRandomInteger(max) {
   return Math.round(Math.random() * max);
@@ -19,6 +21,8 @@ function generateInitialConfig() {
 
   answer.innerHTML = 'Escolha uma cor';
 
+  scoreDiv.innerHTML = `Palcar: ${score}`;
+
   for (let index = 0; index < balls.length; index += 1) {
     const color = generateColor();
     balls[index].style.backgroundColor = `rgb${color}`;
@@ -37,6 +41,8 @@ function chooseColor() {
     ball.addEventListener('click', (event) => {
       if (event.target.classList.contains('correct')) {
         answer.innerHTML = 'Acertou!';
+        score += 3;
+        scoreDiv.innerHTML = `Placar ${score}`;
       } else {
         answer.innerHTML = 'Errou! Tente novamente';
       }
