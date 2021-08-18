@@ -2,6 +2,7 @@ const colorBall = document.getElementsByClassName('ball');
 const corEscolhida = document.getElementById('rgb-color');
 const respostaPagina = document.getElementById('answer');
 const botaoReset = document.getElementById('reset-game');
+const pontos = document.getElementById('score');
 const regexCor = /(\(\d{1,3}, \d{1,3}, \d{1,3}\))/g;
 const indexZero = 0;
 
@@ -45,6 +46,7 @@ function checarResposta(evento) {
   const arrayCor = cor.match(regexCor);
   if (arrayCor[indexZero] === corEscolhida.innerText) {
     respostaPagina.innerText = 'Acertou!';
+    pontos.innerText = parseInt(pontos.innerText, 10) + 3;
   } else {
     respostaPagina.innerText = 'Errou! Tente novamente!';
   }
@@ -52,6 +54,8 @@ function checarResposta(evento) {
 
 window.onload = function carregarPagina() {
   atribuirCor();
+
+  pontos.innerText = '0';
 
   for (let index = 0; index < colorBall.length; index += 1) {
     colorBall[index].addEventListener('click', checarResposta);
