@@ -1,4 +1,5 @@
 const balls = document.querySelectorAll('.ball');
+const answer = document.getElementById('answer');
 
 function generateRandomInteger(max) {
   return Math.round(Math.random() * max);
@@ -12,9 +13,12 @@ function generateColor() {
   return `(${values[0]}, ${values[1]}, ${values[2]})`;
 }
 
-function generateRandomColors() {
+function generateInitialConfig() {
   const colorRgb = document.getElementById('rgb-color');
   const correct = generateRandomInteger(balls.length - 1);
+
+  answer.innerHTML = 'Escolha uma cor';
+
   for (let index = 0; index < balls.length; index += 1) {
     const color = generateColor();
     balls[index].style.backgroundColor = `rgb${color}`;
@@ -26,12 +30,11 @@ function generateRandomColors() {
   }
 }
 
-generateRandomColors();
+generateInitialConfig();
 
 function chooseColor() {
   balls.forEach((ball) => {
     ball.addEventListener('click', (event) => {
-      const answer = document.getElementById('answer');
       if (event.target.classList.contains('correct')) {
         answer.innerHTML = 'Acertou!';
       } else {
@@ -42,3 +45,12 @@ function chooseColor() {
 }
 
 chooseColor();
+
+function resetGame() {
+  const resetButton = document.getElementById('reset-game');
+  resetButton.addEventListener('click', () => {
+    generateInitialConfig();
+  });
+}
+
+resetGame();
