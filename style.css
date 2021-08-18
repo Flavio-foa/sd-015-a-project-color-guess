@@ -9,3 +9,8 @@ header , main {
   width: 40px;
   height: 40px;
 }
+
+#answer {
+  font-size: 20px;
+  font-weight: 700;
+}
