@@ -2,7 +2,13 @@ const paragrafo = document.createElement('div');
 const rgbPrincipal = document.getElementById('rgb-principal');
 const number = 6;
 const rgbContainer = document.querySelector('#rgb-container');
+const btnReset = document.getElementById('reset-game');
+const score = document.getElementById('score');
 const resposta = document.getElementById('answer');
+const resInicial = 'Escolha uma cor';
+
+resposta.innerHTML = resInicial;
+score.innerHTML = '0';
 
 function gerarCor() {
   const r = Math.round(Math.random() * 255);
@@ -24,7 +30,7 @@ function coresAleatoria() {
     const circuitos = document.createElement('div');
     const cor = gerarCor();
     circuitos.className = 'ball';
-    circuitos.innerHTML = cor;
+    //  circuitos.innerHTML = cor;
     circuitos.style.backgroundColor = cor;
     circuitos.style.width = '50px';
     circuitos.style.height = '50px';
@@ -40,7 +46,19 @@ function coresAleatoria() {
   corPrincipal(ball[random].style.backgroundColor);
 }
 
+function removeAll() {
+  while (rgbContainer.firstChild) {
+    rgbContainer.firstChild.remove();
+  }
+}
+
 coresAleatoria();
+
+btnReset.addEventListener('click', () => {
+  removeAll();
+  coresAleatoria();
+  resposta.innerHTML = resInicial;
+});
 
 function comparaCor(cor) {
   if (paragrafo.innerHTML === cor) {
@@ -51,16 +69,19 @@ function comparaCor(cor) {
 
 function respostaFunction(result) {
   if (result) {
+    const point = 3;
+    const pointTotal = parseInt(score.innerHTML, 10);
     resposta.innerHTML = 'Acertou!';
+    score.innerHTML = pointTotal + point;
     return;
   }
   resposta.innerHTML = 'Errou! Tente novamente!';
 }
 
-resposta.innerHTML = 'Escolha uma cor';
-
 rgbContainer.addEventListener('click', (event) => {
-  const cor = event.target.style.backgroundColor;
-  const result = comparaCor(cor);
-  respostaFunction(result);
+  if (resposta.innerHTML === resInicial) {
+    const cor = event.target.style.backgroundColor;
+    const result = comparaCor(cor);
+    respostaFunction(result);
+  }
 });
