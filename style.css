@@ -25,4 +25,12 @@ body {
   color: white;
   display: inline-block;
   border-radius: 25%;
+
+}
+
+#score {
+  padding: 20px;
+  font-size: 55px;
+  color: chocolate;
+
 }

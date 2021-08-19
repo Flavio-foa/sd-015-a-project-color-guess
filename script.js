@@ -40,11 +40,17 @@ for (let index = 0; index < 6; index += 1) {
   }
 }
 const answer = document.querySelector('#answer');
+let placarAtual = 0;
+const placar = document.querySelector('#score');
+placar.innerHTML += placarAtual;
+
 for (let index = 0; index < 6; index +=1) {
   ballsContainer.children[index].addEventListener('click' , () => {
     if(ballsContainer.children[index].style.backgroundColor === 'rgb' + rightColorString) {
       answer.innerHTML = 'Acertou!';
       answer.style.backgroundColor = 'green';
+      placarAtual += 3;
+      placar.innerHTML = 'Placar : ' + placarAtual;
     }
     else {
       answer.innerHTML = 'Errou! Tente novamente!';
@@ -52,3 +58,22 @@ for (let index = 0; index < 6; index +=1) {
     }
   });
 }
+
+const resetButton = document.querySelector('#reset-game');
+resetButton.addEventListener('click' , () => {  
+rbgInfo = numberRandomizer(3);
+rightColorString = convertToString(rbgInfo);
+color.innerHTML = rightColorString;
+let rightColorRandomizer = Math.trunc(Math.random()*6);
+ballsContainer.children[rightColorRandomizer].style.backgroundColor = 'rgb' + convertToString(rbgInfo);
+for (let index = 0; index < 6; index += 1) {
+  if(ballsContainer.children[index].style.backgroundColor !== 'rgb' + rightColorString) {
+    let colorDetails = numberRandomizer(3);
+    let wrongColorsString = convertToString(colorDetails);
+    ballsContainer.children[index].style.backgroundColor = 'rgb' + wrongColorsString;
+  }
+}
+answer.innerHTML = 'Escolha uma cor';
+answer.style.backgroundColor = 'rgb(160, 102, 214)';
+});
+
