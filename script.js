@@ -5,30 +5,11 @@ const getResetButton = document.getElementById('reset-game');
 const getScore = document.getElementById('score');
 
 function getAleatoryColor() { // Retorna um número aleatorio
-  let aleatoryNumber = Math.floor(Math.random() * 6);
+  const aleatoryNumber = Math.floor(Math.random() * 6);
   return aleatoryNumber;
 }
 
-function randomBgC() {
-  const getBalls = document.querySelectorAll(ball);
-  const aleatoryNumber = getAleatoryColor();
-  for (let i = 0; i < getBalls.length; i += 1) {
-      getBalls[i].addEventListener('click', answerColor);
-      let randomR = Math.round(Math.random() * 255);
-      let randomG = Math.round(Math.random() * 255);
-      let randomB = Math.round(Math.random() * 255);
-      getBalls[i].style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
-      if (i === aleatoryNumber) {
-          let color = getBalls[i].style.backgroundColor;
-          rgbColor.style.color = color;
-          rgbColor.innerHTML = color.slice(3);
-      }
-  }
-  const getAnswer = document.getElementById(answer);
-  getAnswer.innerText = 'Escolha uma cor';
-}
-
-function answerColor (event) {
+function answerColor(event) {
   const clicked = event.target;
   const color = clicked.style.backgroundColor;
   const colorSlice = color.slice(3);
@@ -44,10 +25,28 @@ function answerColor (event) {
     let backToText = splitScore.join(' ');
     getScore.innerText = backToText;
     console.log(getScore.innerText)
-    // localStorage.setItem('score', getScore.innerText)
   } else {
     getAnswerP.innerHTML = 'Errou! Tente novamente!';
   }
+}
+
+function randomBgC() {
+  const getBalls = document.querySelectorAll(ball);
+  const aleatoryNumber = getAleatoryColor();
+  for (let i = 0; i < getBalls.length; i += 1) {
+    getBalls[i].addEventListener('click', answerColor);
+    let randomR = Math.round(Math.random() * 255);
+    let randomG = Math.round(Math.random() * 255);
+    let randomB = Math.round(Math.random() * 255);
+    getBalls[i].style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+    if (i === aleatoryNumber) {
+        let color = getBalls[i].style.backgroundColor;
+        rgbColor.style.color = color;
+        rgbColor.innerHTML = color.slice(3);
+      }
+  }
+  const getAnswer = document.getElementById(answer);
+  getAnswer.innerText = 'Escolha uma cor';
 }
 
 function setResetButton() {
