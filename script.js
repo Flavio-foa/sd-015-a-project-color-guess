@@ -56,8 +56,6 @@ function setResetButton() {
 
 getResetButton.addEventListener('click', setResetButton);
 
-
-
-window.onload = function () {
+window.onload = function loadRandomColors() {
   randomBgC();
 };
