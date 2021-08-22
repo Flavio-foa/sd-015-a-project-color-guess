@@ -4,6 +4,11 @@ const answer = 'answer';
 const getResetButton = document.getElementById('reset-game');
 const getScore = document.getElementById('score');
 
+function getAleatoryColor() { // Retorna um número aleatorio
+  let aleatoryNumber = Math.floor(Math.random() * 6);
+  return aleatoryNumber;
+}
+
 function randomBgC() {
   const getBalls = document.querySelectorAll(ball);
   const aleatoryNumber = getAleatoryColor();
@@ -21,11 +26,6 @@ function randomBgC() {
   }
   const getAnswer = document.getElementById(answer);
   getAnswer.innerText = 'Escolha uma cor';
-}
-
-function getAleatoryColor() { // Retorna um número aleatorio
-  let aleatoryNumber = Math.floor(Math.random() * 6);
-  return aleatoryNumber;
 }
 
 function answerColor (event) {
