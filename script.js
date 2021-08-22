@@ -2,6 +2,7 @@ const ball = '.ball';
 const rgbColor = document.getElementById('rgb-color');
 const answer = 'answer';
 const getResetButton = document.getElementById('reset-game');
+const getScore = document.getElementById('score');
 
 function randomBgC() {
   const getBalls = document.querySelectorAll(ball);
@@ -18,6 +19,8 @@ function randomBgC() {
           rgbColor.innerHTML = color.slice(3);
       }
   }
+  const getAnswer = document.getElementById(answer);
+  getAnswer.innerText = 'Escolha uma cor';
 }
 
 function getAleatoryColor() { // Retorna um número aleatorio
@@ -33,18 +36,28 @@ function answerColor (event) {
   const getAnswerP = document.getElementById(answer);
   if (colorSlice === rgbColortext) {
     getAnswerP.innerHTML = 'Acertou!';
+    let scoreContent = getScore.innerText;
+    let splitScore = scoreContent.split(' ');
+    splitScore[1] = parseInt(splitScore[1]);
+    splitScore[1] += 3;
+    scoreContent += splitScore[1];
+    let backToText = splitScore.join(' ');
+    getScore.innerText = backToText;
+    console.log(getScore.innerText)
+    // localStorage.setItem('score', getScore.innerText)
   } else {
     getAnswerP.innerHTML = 'Errou! Tente novamente!';
   }
 }
 
 function setResetButton() {
-  window.location.reload(true);
-  // randomBgC();
-  // rgbColor.innerText = 'Escola uma cor';
+  // window.location.reload(); // Faz reload da página.
+  randomBgC();
 }
 
 getResetButton.addEventListener('click', setResetButton);
+
+
 
 window.onload = function () {
   randomBgC();
