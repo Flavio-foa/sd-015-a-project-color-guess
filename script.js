@@ -32,3 +32,19 @@ window.onload = function init() {
   const arrayRGB = correctColor.match(/\d+/g);
   paragraph.innerText = `(${arrayRGB[0]}, ${arrayRGB[1]}, ${arrayRGB[2]})`;
 };
+
+function reset() {
+  balls.forEach((element) => {
+    const array = element;
+    array.style.backgroundColor = generateRGBColor();
+  });
+  const correctBall = balls[Math.floor(Math.random() * 6)];
+  correctBall.id = 'correct';
+  const correctColor = correctBall.style.backgroundColor;
+  const arrayRGB = correctColor.match(/\d+/g);
+  paragraph.innerText = `(${arrayRGB[0]}, ${arrayRGB[1]}, ${arrayRGB[2]})`;
+  message.innerHTML = 'Escolha uma cor';
+}
+
+const resetBtn = document.getElementById('reset-game');
+resetBtn.addEventListener('click', reset);
