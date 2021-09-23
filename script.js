@@ -12,6 +12,7 @@ function gameEngine(event) {
   const result = document.getElementById('answer');
   const score = document.querySelector('#score-value');
   const scoreValue = parseInt(score.innerText, 10);
+  if (result.innerText !== 'Escolha uma cor') return 'bela tentativa';
   if (ball.style.backgroundColor === `rgb${color.innerText}`) {
     result.innerText = 'Acertou!';
     score.innerText = scoreValue + 3;
