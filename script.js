@@ -5,15 +5,34 @@ function createRandomColor() {
   return `(${r.toFixed(0)}, ${g.toFixed(0)}, ${b.toFixed(0)})`;
 }
 
-window.onload = () => {
-  const toGuess = document.createElement('p');
-  toGuess.innerText = createRandomColor();
-  toGuess.id = 'rgb-color';
-  document.querySelector('body').appendChild(toGuess);
-  for (let i = 0; i < 6; i += 1) {
-    const ball = document.createElement('div');
-    ball.className = 'ball';
-    ball.style.backgroundColor = `rgb${createRandomColor()}`;
-    document.querySelector('body').appendChild(ball);
+const color = document.getElementById('rgb-color');
+
+function gameEngine(event) {
+  const ball = event.target;
+  const result = document.getElementById('answer');
+  const score = document.querySelector('#score-value');
+  const scoreValue = parseInt(score.innerText, 10);
+  if (ball.style.backgroundColor === `rgb${color.innerText}`) {
+    result.innerText = 'Acertou!';
+    score.innerText = scoreValue + 3;
+  } else {
+    result.innerText = 'Errou! Tente novamente!';
+    score.innerText = scoreValue < 1 ? 0 : scoreValue - 1;
   }
+}
+
+function resetGame() {
+  color.innerText = createRandomColor();
+  document.getElementById('answer').innerText = 'Escolha uma cor';
+  const balls = document.querySelectorAll('.ball');
+  const n = (Math.random() * (balls.length - 1)).toFixed(0);
+  for (let i = 0; i < balls.length; i += 1) {
+    balls[i].style.backgroundColor = parseInt(n, 10) === i ? `rgb${color.innerText}`
+      : `rgb${createRandomColor()}`;
+    balls[i].addEventListener('click', gameEngine);
+  }
+}
+
+window.onload = () => {
+  resetGame();
 };
