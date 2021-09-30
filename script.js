@@ -1,7 +1,9 @@
 const balls = document.getElementsByClassName('ball');
 const paragrafo = document.getElementById('rgb-color');
 const resposta = document.getElementById('answer');
-const botao = document.getElementById('reset-game');
+const botaoAgain = document.getElementById('reset-game');
+const botaoReset = document.getElementById('jogando-de-novo');
+const placar = document.getElementById('score');
 
 function gerandoRGB() {
   const red = Math.floor(Math.random() * 256);
@@ -11,21 +13,29 @@ function gerandoRGB() {
   return `rgb(${red}, ${green}, ${blue})`;
 }
 
-const randomIndex = Math.floor(Math.random() * 7);
+let numero = 0;
+function acertando(event) {
+  if (event.target.style.backgroundColor === paragrafo.innerText) {
+    numero += 3;
+  }
+  placar.innerHTML = numero;
+}
 
 function escolherCor(event) {
   if (event.target.style.backgroundColor === paragrafo.innerText) {
     resposta.innerText = 'Acertou!';
+    acertando(event);
   } else {
     resposta.innerText = 'Errou! Tente novamente';
   }
 }
 
-function corAleatoria() {
+function rgbExibido() {
   paragrafo.innerText = gerandoRGB();
 }
 
 function colocaCor() {
+  const randomIndex = Math.floor(Math.random() * 7);
   for (let index = 0; index < balls.length; index += 1) {
     if (index === randomIndex) {
       balls[index].style.backgroundColor = paragrafo.innerText;
@@ -38,12 +48,12 @@ function colocaCor() {
 }
 
 function reiniciar() {
-  corAleatoria();
+  rgbExibido();
   colocaCor();
   resposta.innerText = 'Escolha uma cor: ';
 }
 
-botao.addEventListener('click', reiniciar);
+botaoAgain.addEventListener('click', reiniciar);
 
-corAleatoria();
+rgbExibido();
 colocaCor();
