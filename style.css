@@ -22,6 +22,24 @@ header, #balls, #random-color {
   margin-right: 10px;
 }
 
-#instruction {
+#answer {
   text-align: center;
+}
+
+#buttons {
+  display:flex;
+  justify-content: center;
+}
+
+#reset-game {
+  background-color: rgb(218, 37, 37);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.selected {
+  transition: 300ms;
+  transform: scale(1.2);
 }
