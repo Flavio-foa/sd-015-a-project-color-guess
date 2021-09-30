@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header, #balls, #random-color {
+  display: flex;
+  justify-content: center;
+}
+
+#balls {
+  display: flex;
+  justify-content: center;
+}
+
+#balls .ball {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; 
+  border: 1px solid black;
+  margin-right: 10px;
+}
+
+#instruction {
+  text-align: center;
+}
