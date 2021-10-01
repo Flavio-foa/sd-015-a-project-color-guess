@@ -14,46 +14,51 @@ function gerandoRGB() {
 }
 
 let numero = 0;
-function acertando(event) {
-  if (event.target.style.backgroundColor === paragrafo.innerText) {
-    numero += 3;
-  }
+
+function acertando() {
+  numero += 3;
   placar.innerHTML = numero;
+}
+
+function corCorreta() {
+  const randomIndex = Math.floor(Math.random() * (balls.length + 1));
+  paragrafo.textContent = balls[randomIndex].style.backgroundColor;
+}
+
+function colocaCor() {
+  for (let index = 0; index < balls.length; index += 1) {
+    balls[index].style.backgroundColor = gerandoRGB();
+  }
+  corCorreta();
+}
+
+function reiniciar() {
+  colocaCor();
+  resposta.innerText = 'Escolha uma cor: ';
 }
 
 function escolherCor(event) {
   if (event.target.style.backgroundColor === paragrafo.innerText) {
     resposta.innerText = 'Acertou!';
-    acertando(event);
+    acertando();
+    setTimeout(() => {
+      reiniciar();
+    }, 1500);
   } else {
     resposta.innerText = 'Errou! Tente novamente';
   }
 }
 
-function rgbExibido() {
-  paragrafo.innerText = gerandoRGB();
+for (let index = 0; index < balls.length; index += 1) {
+  balls[index].addEventListener('click', escolherCor);
 }
 
-function colocaCor() {
-  const randomIndex = Math.floor(Math.random() * 7);
-  for (let index = 0; index < balls.length; index += 1) {
-    if (index === randomIndex) {
-      balls[index].style.backgroundColor = paragrafo.innerText;
-    } else {
-      const corAleatoria = gerandoRGB();
-      balls[index].style.backgroundColor = corAleatoria;
-    }
-    balls[index].addEventListener('click', escolherCor);
-  }
-}
-
-function reiniciar() {
-  rgbExibido();
-  colocaCor();
-  resposta.innerText = 'Escolha uma cor: ';
+function resetandoGame() {
+  numero = 0;
+  placar.innerHTML = numero;
 }
 
 botaoAgain.addEventListener('click', reiniciar);
+botaoReset.addEventListener('click', resetandoGame);
 
-rgbExibido();
 colocaCor();
